@@ -2,7 +2,7 @@ config:
   credentials: []
   project_repos:
     github.com/EOSC-synergy/sqaaas-tooling:
-      branch: main
+      branch: feature/pynblint_fix
       repo: https://github.com/EOSC-synergy/sqaaas-tooling
 environment:
   JPL_DOCKERFORCEBUILD: enabled
@@ -12,5 +12,17 @@ sqa_criteria:
       this_repo:
         commands:
         - 'git rev-parse --is-inside-work-tree '
-        container: qc.acc_fuzzy-linen-abyssinian
+        container: qc.acc_pistachio_relaxed_clownfish
+  QC.Doc:
+    repos:
+      this_repo:
+        commands:
+        - mdl --json  .
+        container: qc.doc_red_hopeful_antelope
+  QC.Lic:
+    repos:
+      this_repo:
+        commands:
+        - 'licensee detect . --confidence 60 --json '
+        container: qc.lic_pineapple_quirky_wolf
 timeout: 5400
